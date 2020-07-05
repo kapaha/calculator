@@ -12,13 +12,13 @@
     font-family: sans-serif;
 }
 
-.screen {
+.display {
     height: 25%;
     background-color: dimgrey;
     position: relative;
 }
 
-.screen-text {
+.display-text {
     font-size: 2rem;
     color: white;
     position: absolute;
