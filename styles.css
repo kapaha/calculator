@@ -1,44 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-.container {
-    width: 215px;
-    height: 300px;
-    margin: 0 auto;
-    background-color: pink;
-    font-family: sans-serif;
+html {
+    font-size: 30px;
+}
+
+.calculator-grid {
+    width: 426px;
+    height: 606px;
+    margin: 100px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 1px;
+    background-color: dimgrey;
+    border: 1px solid black;
+    font-family: 'Open sans', sans-serif;
+    color: white;
 }
 
 .display {
-    height: 25%;
-    background-color: dimgrey;
     position: relative;
+    grid-column: -1 / 1;
+    background-color: dimgrey;
 }
 
 .display-text {
-    font-size: 2rem;
-    color: white;
     position: absolute;
-    right: 0;
     bottom: 0;
+    right: 0.5rem;
+    font-size: 2rem;
+    font-weight: 300;
 }
 
-.button-grid {
-    height: 75%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 1px;
-    background-color: dimgrey;
-}
-
- button {
+ .calculator-grid > button {
+    font-family: inherit;
+    color: inherit;
     font-size: 1.4rem;
-    border-radius: 0;
     border: none;
-    color: white;
 }
 
 .span-three {
