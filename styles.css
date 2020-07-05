@@ -25,17 +25,16 @@ html {
 }
 
 .display {
-    position: relative;
     grid-column: -1 / 1;
+    display: flex;
+    justify-content: flex-end;
     background-color: dimgrey;
 }
 
 .display-text {
-    position: absolute;
-    bottom: 0;
-    right: 0.5rem;
     font-size: 2rem;
     font-weight: 300;
+    padding: 10px;
 }
 
  .calculator-grid > button {
