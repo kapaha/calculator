@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 215px;
+    height: 300px;
+    margin: 0 auto;
+    background-color: pink;
+    font-family: sans-serif;
+}
+
+.screen {
+    height: 25%;
+    background-color: dimgrey;
+    position: relative;
+}
+
+.screen-text {
+    font-size: 2rem;
+    color: white;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.button-grid {
+    height: 75%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1px;
+    background-color: dimgrey;
+}
+
+ button {
+    font-size: 1.4rem;
+    border-radius: 0;
+    border: none;
+    color: white;
+}
+
+.span-three {
+    grid-column: span 3;
+    background-color: grey;
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+.operator {
+    background-color: orange;
+}
+
+.number {
+    background-color: darkgrey;
+}
