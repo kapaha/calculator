@@ -1,4 +1,5 @@
 const numberButtons = document.querySelectorAll('.number');
+const clearButton = document.getElementById('clear-button');
 const displayValue = document.getElementById('display-value');
 
 // add number button input to display
@@ -18,6 +19,11 @@ numberButtons.forEach(button => {
 
         displayValue.textContent += button.textContent;
     });
+});
+
+clearButton.addEventListener('click', (event) => {
+    displayValue.textContent = '0';
+    console.log('Display Value Cleared');
 });
 
 function add(number1, number2) {
