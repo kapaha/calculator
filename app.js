@@ -1,6 +1,7 @@
 const clearButton = document.getElementById('clear-btn');
 const equalsButton = document.getElementById('equals');
 const operatorButtons = document.querySelectorAll('.operator');
+const numberButtons = document.querySelectorAll('.number');
 const displayText = document.querySelector('.display-text');
 
 let currentOperator = null;
@@ -34,6 +35,16 @@ operatorButtons.forEach(button => {
         console.log(`Current Operator: ${currentOperator}`);
         console.log('Number1 and operator set.')
         console.groupEnd();
+    });
+});
+
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        if (getDisplayValue() === '0') {
+            updateDisplay(button.textContent);
+        } else {
+            updateDisplay(getDisplayValue() + button.textContent);
+        }
     });
 });
 
