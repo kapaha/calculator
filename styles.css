@@ -53,7 +53,7 @@ html {
     grid-column: span 2;
 }
 
-.operator {
+.operator, #equals {
     background-color: orange;
 }
 
