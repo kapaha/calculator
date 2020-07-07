@@ -1,62 +1,81 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
 
+:root {
+    --display-color: #2F3131;
+    --clear-button-color: #434445;
+    --number-button-color: #646565;
+    --operator-button-color: #FF9F0C;
+    --border-radius-size: 10px;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-html {
-    font-size: 30px;
+    font-family: 'Open sans', sans-serif;
+    color: white;
 }
 
 .calculator-grid {
-    width: 426px;
-    height: 606px;
-    margin: 100px auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    grid-gap: 1px;
-    background-color: dimgrey;
-    border: 1px solid black;
-    font-family: 'Open sans', sans-serif;
-    color: white;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+
+ .calculator-grid > button {
+    font-size: 2rem;
+    border: 1px solid var(--display-color);
+    outline: none;
+    cursor: pointer;
+}
+
+.calculator-grid > button:hover {
+    opacity: 0.85;
 }
 
 .display {
     grid-column: -1 / 1;
     display: flex;
+    flex-direction: column;
     justify-content: flex-end;
-    background-color: dimgrey;
+    align-items: flex-end;
+    word-wrap: break-word;
+    word-break: break-all;
+    background-color: var(--display-color);
+    padding: 10px;
+    border-top-left-radius: var(--border-radius-size);
+    border-top-right-radius: var(--border-radius-size);
 }
 
 .display-text {
-    font-size: 2rem;
+    font-size: 4rem;
     font-weight: 300;
-    padding: 10px;
-}
-
- .calculator-grid > button {
-    font-family: inherit;
-    color: inherit;
-    font-size: 1.4rem;
-    border: none;
 }
 
 .span-three {
     grid-column: span 3;
-    background-color: grey;
+    background-color: var(--clear-button-color);
 }
 
 .span-two {
     grid-column: span 2;
 }
 
-.operator, #equals {
-    background-color: orange;
+.operator-btn, #equals-btn {
+    background-color: var(--operator-button-color);
 }
 
-.number {
-    background-color: darkgrey;
+.num-btn {
+    background-color: var(--number-button-color);
+}
+
+.bor-rad-btm-l  {
+    border-bottom-left-radius: var(--border-radius-size);
+}
+
+.bor-rad-btm-r {
+    border-bottom-right-radius: var(--border-radius-size);
 }
