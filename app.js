@@ -6,10 +6,9 @@ const displayText = document.querySelector('.display-text');
 
 let currentOperator = null;
 let previousOperator = null;
+let operatorJustPressed = false;
 let number1 = null;
 let number2 = null;
-
-displayText.textContent = -5;
 
 clearButton.addEventListener('click', () => {
     currentOperator = null;
@@ -29,6 +28,7 @@ operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
         number1 = Number(getDisplayValue());
         currentOperator = button.textContent;
+        operatorJustPressed = true;
 
         console.groupCollapsed(`Operator ${button.textContent} Button`);
         console.log(`Number1: ${number1}`);
@@ -40,8 +40,10 @@ operatorButtons.forEach(button => {
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
-        if (getDisplayValue() === '0') {
+        if (getDisplayValue().includes('.') && button.textContent === '.') return;
+        if ((getDisplayValue() === '0' || operatorJustPressed) && button.textContent !== '.') {
             updateDisplay(button.textContent);
+            operatorJustPressed = false;
         } else {
             updateDisplay(getDisplayValue() + button.textContent);
         }
