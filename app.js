@@ -1,7 +1,7 @@
 const clearButton = document.getElementById('clear-btn');
-const equalsButton = document.getElementById('equals');
-const operatorButtons = document.querySelectorAll('.operator');
-const numberButtons = document.querySelectorAll('.number');
+const equalsButton = document.getElementById('equals-btn');
+const operatorButtons = document.querySelectorAll('.operator-btn');
+const numberButtons = document.querySelectorAll('.num-btn');
 const displayText = document.querySelector('.display-text');
 
 let currentOperator = null;
