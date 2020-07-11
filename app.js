@@ -2,11 +2,6 @@ const calculator = document.querySelector('.calculator');
 const displayText = calculator.querySelector('.display-text');
 const calculatorButtons = calculator.querySelectorAll('button');
 
-let currentOperator = null;
-let previousOperator = null;
-let number1 = null;
-let number2 = null;
-
 calculatorButtons.forEach(button => {
     button.addEventListener('click', () => {
         const action = button.dataset.action;
@@ -48,31 +43,31 @@ calculatorButtons.forEach(button => {
             action === 'multiply' ||
             action === 'divide'
         ) {
-            number1 = Number(displayedNum);
-            currentOperator = buttonContent;
+            calculator.dataset.firstNumber = displayedNum;
+            calculator.dataset.operator = buttonContent;
             calculator.dataset.previousKeyType = 'operator';
         }
 
         // clear button
         if (action === 'clear') {
-            currentOperator = null;
-            previousOperator = null;
-            number1 = null;
-            number2 = null;
+            calculator.dataset.operator = '';
+            calculator.dataset.previousOperator = '';
+            calculator.dataset.firstNumber = '';
+            calculator.dataset.secondNumber = '';
             updateDisplay('0');
             calculator.dataset.previousKeyType = 'clear';
         }
 
         // equals button
         if (action == 'calculate') {
-            if (currentOperator) {
-                number2 = Number(displayedNum);
-                updateDisplay(operate(currentOperator, number1, number2));
-                previousOperator = currentOperator;
-                currentOperator = null;
-            } else if (previousOperator) {
-                number1 = Number(displayedNum);
-                updateDisplay(operate(previousOperator, number1, number2));
+            if (calculator.dataset.operator) {
+                calculator.dataset.secondNumber = Number(displayedNum);
+                updateDisplay(operate(calculator.dataset.operator, calculator.dataset.firstNumber, calculator.dataset.secondNumber));
+                calculator.dataset.previousOperator = calculator.dataset.operator;
+                calculator.dataset.operator = '';
+            } else if (calculator.dataset.previousOperator) {
+                calculator.dataset.firstNumber = Number(displayedNum);
+                updateDisplay(operate(calculator.dataset.previousOperator, calculator.dataset.firstNumber, calculator.dataset.secondNumber));
             } else {
                 console.log('No current or previous operator');
             }
