@@ -4,7 +4,6 @@ const calculatorButtons = calculator.querySelectorAll('button');
 
 let currentOperator = null;
 let previousOperator = null;
-let operatorJustPressed = false;
 let number1 = null;
 let number2 = null;
 
@@ -13,25 +12,33 @@ calculatorButtons.forEach(button => {
         const action = button.dataset.action;
         const buttonContent = button.textContent;
         const displayedNum = displayText.textContent;
+        const previousKeyType = calculator.dataset.previousKeyType;
 
         // number buttons
         if (!action) {
-            if (displayedNum === '0' || operatorJustPressed) {
+            if (
+                displayedNum === '0' ||
+                previousKeyType === 'operator' ||
+                previousKeyType === 'calculate'
+            ) {
                 updateDisplay(buttonContent);
-                operatorJustPressed = false;
             } else {
                 updateDisplay(displayedNum + buttonContent);
             }
+            calculator.dataset.previousKeyType = 'number';
         }
 
         // decimal button
         if (action === 'decimal') {
             if (!displayedNum.includes('.')) {
                 updateDisplay(displayedNum + '.');
-            } else if (displayedNum.includes('.') && operatorJustPressed) {
+            } else if (
+                previousKeyType === 'operator' ||
+                previousKeyType === 'calculate'
+            ) {
                 updateDisplay('0.');
-                operatorJustPressed = false;
-            } 
+            }
+            calculator.dataset.previousKeyType = 'decimal'
         }
 
         // operator buttons
@@ -43,7 +50,7 @@ calculatorButtons.forEach(button => {
         ) {
             number1 = Number(displayedNum);
             currentOperator = buttonContent;
-            operatorJustPressed = true;
+            calculator.dataset.previousKeyType = 'operator';
         }
 
         // clear button
@@ -53,6 +60,7 @@ calculatorButtons.forEach(button => {
             number1 = null;
             number2 = null;
             updateDisplay('0');
+            calculator.dataset.previousKeyType = 'clear';
         }
 
         // equals button
@@ -68,6 +76,7 @@ calculatorButtons.forEach(button => {
             } else {
                 console.log('No current or previous operator');
             }
+            calculator.dataset.previousKeyType = 'calculate';
         }
 
     })
