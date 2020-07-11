@@ -1,8 +1,6 @@
-const clearButton = document.getElementById('clear-btn');
-const equalsButton = document.getElementById('equals-btn');
-const operatorButtons = document.querySelectorAll('.operator-btn');
-const numberButtons = document.querySelectorAll('.num-btn');
-const displayText = document.querySelector('.display-text');
+const calculator = document.querySelector('.calculator');
+const displayText = calculator.querySelector('.display-text');
+const calculatorButtons = calculator.querySelectorAll('button');
 
 let currentOperator = null;
 let previousOperator = null;
@@ -10,46 +8,60 @@ let operatorJustPressed = false;
 let number1 = null;
 let number2 = null;
 
-clearButton.addEventListener('click', () => {
-    currentOperator = null;
-    previousOperator = null;
-    number1 = null;
-    number2 = null;
-    updateDisplay('0');
-});
-
-operatorButtons.forEach(button => {
+calculatorButtons.forEach(button => {
     button.addEventListener('click', () => {
-        number1 = Number(getDisplayValue());
-        currentOperator = button.textContent;
-        operatorJustPressed = true;
-    });
-});
+        const action = button.dataset.action;
+        const buttonContent = button.textContent;
+        const displayedNum = displayText.textContent;
 
-numberButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        if (getDisplayValue().includes('.') && button.textContent === '.') return;
-        if ((getDisplayValue() === '0' || operatorJustPressed) && button.textContent !== '.') {
-            updateDisplay(button.textContent);
-            operatorJustPressed = false;
-        } else {
-            updateDisplay(getDisplayValue() + button.textContent);
+        // number buttons
+        if (!action || action === 'decimal') {
+            if (getDisplayValue().includes('.') && buttonContent === '.') return;
+            if ((getDisplayValue() === '0' || operatorJustPressed) && buttonContent !== '.') {
+                updateDisplay(buttonContent);
+                operatorJustPressed = false;
+            } else {
+                updateDisplay(getDisplayValue() + buttonContent);
+            }
         }
-    });
-});
 
-equalsButton.addEventListener('click', () => {
-    if (currentOperator) {
-        number2 = Number(getDisplayValue());
-        updateDisplay(operate(currentOperator, number1, number2));
-        previousOperator = currentOperator;
-        currentOperator = null;
-    } else if (previousOperator) {
-        number1 = Number(getDisplayValue());
-        updateDisplay(operate(previousOperator, number1, number2));
-    } else {
-        console.log('No current or previous operator');
-    }
+        // operator buttons
+        if (
+            action === 'add' ||
+            action === 'subtract' ||
+            action === 'multiply' ||
+            action === 'divide'
+        ) {
+            number1 = Number(getDisplayValue());
+            currentOperator = buttonContent;
+            operatorJustPressed = true;
+        }
+
+        // clear button
+        if (action === 'clear') {
+            currentOperator = null;
+            previousOperator = null;
+            number1 = null;
+            number2 = null;
+            updateDisplay('0');
+        }
+
+        // equals button
+        if (action == 'calculate') {
+            if (currentOperator) {
+                number2 = Number(getDisplayValue());
+                updateDisplay(operate(currentOperator, number1, number2));
+                previousOperator = currentOperator;
+                currentOperator = null;
+            } else if (previousOperator) {
+                number1 = Number(getDisplayValue());
+                updateDisplay(operate(previousOperator, number1, number2));
+            } else {
+                console.log('No current or previous operator');
+            }
+        }
+
+    })
 });
 
 function getDisplayValue() {
