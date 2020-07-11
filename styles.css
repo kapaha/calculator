@@ -16,7 +16,7 @@
     color: white;
 }
 
-.calculator-grid {
+.calculator {
     display: grid;
     justify-content: center;
     align-content: center;
@@ -25,14 +25,14 @@
     grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
 
- .calculator-grid > button {
+ .calculator > button {
     font-size: 2rem;
     border: 1px solid var(--display-color);
     outline: none;
     cursor: pointer;
 }
 
-.calculator-grid > button:hover {
+.calculator > button:hover {
     opacity: 0.85;
 }
 
@@ -64,7 +64,7 @@
     grid-column: span 2;
 }
 
-.operator-btn, #equals-btn {
+.operator-btn {
     background-color: var(--operator-button-color);
 }
 
