@@ -15,14 +15,23 @@ calculatorButtons.forEach(button => {
         const displayedNum = displayText.textContent;
 
         // number buttons
-        if (!action || action === 'decimal') {
-            if (displayedNum.includes('.') && buttonContent === '.') return;
-            if ((displayedNum === '0' || operatorJustPressed) && buttonContent !== '.') {
+        if (!action) {
+            if (displayedNum === '0' || operatorJustPressed) {
                 updateDisplay(buttonContent);
                 operatorJustPressed = false;
             } else {
                 updateDisplay(displayedNum + buttonContent);
             }
+        }
+
+        // decimal button
+        if (action === 'decimal') {
+            if (!displayedNum.includes('.')) {
+                updateDisplay(displayedNum + '.');
+            } else if (displayedNum.includes('.') && operatorJustPressed) {
+                updateDisplay('0.');
+                operatorJustPressed = false;
+            } 
         }
 
         // operator buttons
