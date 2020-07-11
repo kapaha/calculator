@@ -16,12 +16,12 @@ calculatorButtons.forEach(button => {
 
         // number buttons
         if (!action || action === 'decimal') {
-            if (getDisplayValue().includes('.') && buttonContent === '.') return;
-            if ((getDisplayValue() === '0' || operatorJustPressed) && buttonContent !== '.') {
+            if (displayedNum.includes('.') && buttonContent === '.') return;
+            if ((displayedNum === '0' || operatorJustPressed) && buttonContent !== '.') {
                 updateDisplay(buttonContent);
                 operatorJustPressed = false;
             } else {
-                updateDisplay(getDisplayValue() + buttonContent);
+                updateDisplay(displayedNum + buttonContent);
             }
         }
 
@@ -32,7 +32,7 @@ calculatorButtons.forEach(button => {
             action === 'multiply' ||
             action === 'divide'
         ) {
-            number1 = Number(getDisplayValue());
+            number1 = Number(displayedNum);
             currentOperator = buttonContent;
             operatorJustPressed = true;
         }
@@ -49,12 +49,12 @@ calculatorButtons.forEach(button => {
         // equals button
         if (action == 'calculate') {
             if (currentOperator) {
-                number2 = Number(getDisplayValue());
+                number2 = Number(displayedNum);
                 updateDisplay(operate(currentOperator, number1, number2));
                 previousOperator = currentOperator;
                 currentOperator = null;
             } else if (previousOperator) {
-                number1 = Number(getDisplayValue());
+                number1 = Number(displayedNum);
                 updateDisplay(operate(previousOperator, number1, number2));
             } else {
                 console.log('No current or previous operator');
@@ -63,10 +63,6 @@ calculatorButtons.forEach(button => {
 
     })
 });
-
-function getDisplayValue() {
-    return displayText.textContent;
-}
 
 function updateDisplay(value) {
     displayText.textContent = value;
