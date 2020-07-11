@@ -50,12 +50,21 @@ calculatorButtons.forEach(button => {
 
         // clear button
         if (action === 'clear') {
-            calculator.dataset.operator = '';
-            calculator.dataset.previousOperator = '';
-            calculator.dataset.firstNumber = '';
-            calculator.dataset.secondNumber = '';
+            if (buttonContent === 'AC') {
+                calculator.dataset.firstNumber = '';
+                calculator.dataset.secondNumber = '';
+                calculator.dataset.operator = '';
+                calculator.dataset.previousOperator = '';
+            } else {
+                button.textContent = 'AC';
+            }
             updateDisplay('0');
             calculator.dataset.previousKeyType = 'clear';
+        }
+
+        if (action !== 'clear') {
+            const clearButton = calculator.querySelector('[data-action=clear]');
+            clearButton.textContent = 'CE';
         }
 
         // equals button
