@@ -8,27 +8,27 @@
         <script defer src="app.js"></script>
     </head>
     <body>
-        <div class="calculator-grid">
+        <div class="calculator">
             <div class="display">
                 <p class="display-text">0</p>
             </div>
-            <button id="clear-btn" class="span-three">Clear</button>
-            <button class="operator-btn">&divide;</button>
+            <button data-action="clear" class="span-three">Clear</button>
+            <button data-action="divide" class="operator-btn">&divide;</button>
             <button class="num-btn">7</button>
             <button class="num-btn">8</button>
             <button class="num-btn">9</button>
-            <button class="operator-btn">&times;</button>
+            <button data-action="multiply" class="operator-btn">&times;</button>
             <button class="num-btn">4</button>
             <button class="num-btn">5</button>
             <button class="num-btn">6</button>
-            <button class="operator-btn">&minus;</button>
+            <button data-action="subtract" class="operator-btn">&minus;</button>
             <button class="num-btn">1</button>
             <button class="num-btn">2</button>
             <button class="num-btn">3</button>
-            <button class="operator-btn">&plus;</button>
+            <button data-action="add" class="operator-btn">&plus;</button>
             <button class="num-btn span-two bor-rad-btm-l">0</button>
-            <button class="num-btn">.</button>
-            <button id="equals-btn" class="bor-rad-btm-r">&equals;</button>
+            <button data-action="decimal" class="num-btn">.</button>
+            <button data-action="calculate" class="operator-btn bor-rad-btm-r">&equals;</button>
         </div>
     </body>
 </html>
