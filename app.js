@@ -87,18 +87,20 @@ calculatorButtons.forEach(button => {
 
         // equals button
         if (action == 'calculate') {
-            if (calculator.dataset.operator) {
-                calculator.dataset.secondNumber = Number(displayedNum);
-                updateDisplay(calculate(calculator.dataset.operator, calculator.dataset.firstNumber, calculator.dataset.secondNumber));
-                calculator.dataset.previousOperator = calculator.dataset.operator;
-                calculator.dataset.operator = '';
-            } else if (calculator.dataset.previousOperator) {
-                calculator.dataset.firstNumber = Number(displayedNum);
-                updateDisplay(calculate(calculator.dataset.previousOperator, calculator.dataset.firstNumber, calculator.dataset.secondNumber));
-            } else {
-                console.log('No current or previous operator');
+            let firstNumber = calculator.dataset.firstNumber;
+            const operator = calculator.dataset.operator;
+            let secondNumber = displayedNum;
+
+            if (firstNumber) {
+                if (previousKeyType === 'calculate') {
+                    firstNumber = displayedNum;
+                    secondNumber = calculator.dataset.modValue;
+                }
+                updateDisplay(calculate(firstNumber, operator, secondNumber));
             }
-            calculator.dataset.previousKeyType = 'calculate';
+
+            calculator.dataset.modValue = secondNumber;
+            calculator.dataset.previousKeyType = 'calculate'
         }
 
     })
