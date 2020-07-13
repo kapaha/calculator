@@ -43,8 +43,26 @@ calculatorButtons.forEach(button => {
             action === 'multiply' ||
             action === 'divide'
         ) {
-            calculator.dataset.firstNumber = displayedNum;
-            calculator.dataset.operator = buttonContent;
+            const firstNumber = calculator.dataset.firstNumber;
+            const operator = calculator.dataset.operator;
+            const secondNumber = displayedNum;
+            
+            if (
+                firstNumber &&
+                operator &&
+                previousKeyType !== 'operator' &&
+                previousKeyType !== 'calculate'
+            ) {
+                const calculatedValue = 
+                    calculate(firstNumber, operator, secondNumber);
+                updateDisplay(calculatedValue);
+
+                calculator.dataset.firstNumber = calculatedValue;
+            } else {
+                calculator.dataset.firstNumber = displayedNum;
+            }
+
+            calculator.dataset.operator = action;
             calculator.dataset.previousKeyType = 'operator';
         }
 
@@ -71,12 +89,12 @@ calculatorButtons.forEach(button => {
         if (action == 'calculate') {
             if (calculator.dataset.operator) {
                 calculator.dataset.secondNumber = Number(displayedNum);
-                updateDisplay(operate(calculator.dataset.operator, calculator.dataset.firstNumber, calculator.dataset.secondNumber));
+                updateDisplay(calculate(calculator.dataset.operator, calculator.dataset.firstNumber, calculator.dataset.secondNumber));
                 calculator.dataset.previousOperator = calculator.dataset.operator;
                 calculator.dataset.operator = '';
             } else if (calculator.dataset.previousOperator) {
                 calculator.dataset.firstNumber = Number(displayedNum);
-                updateDisplay(operate(calculator.dataset.previousOperator, calculator.dataset.firstNumber, calculator.dataset.secondNumber));
+                updateDisplay(calculate(calculator.dataset.previousOperator, calculator.dataset.firstNumber, calculator.dataset.secondNumber));
             } else {
                 console.log('No current or previous operator');
             }
@@ -90,17 +108,17 @@ function updateDisplay(value) {
     displayText.textContent = value;
 }
 
-function operate(operator, number1, number2) {
+function calculate(number1, operator, number2) {
     number1 = parseFloat(number1);
     number2 = parseFloat(number2);
     switch(operator) {
-        case '+':
+        case 'add':
             return number1 + number2;
-        case '−':
+        case 'subtract':
             return number1 - number2;
-        case '×':
+        case 'multiply':
             return number1 * number2;
-        case '÷':
+        case 'divide':
             return number1 / number2;
         default:
             return 'Invalid operator';
