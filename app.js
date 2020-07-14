@@ -21,6 +21,7 @@ calculatorButtons.forEach(button => {
                 updateDisplay(displayedNum + buttonContent);
             }
             calculator.dataset.previousKeyType = 'number';
+            calculator.dataset.hasEntry = 'true';
         }
 
         if (action === 'decimal') {
@@ -33,6 +34,7 @@ calculatorButtons.forEach(button => {
                 updateDisplay('0.');
             }
             calculator.dataset.previousKeyType = 'decimal'
+            calculator.dataset.hasEntry = 'true';
         }
 
         if (
@@ -74,20 +76,22 @@ calculatorButtons.forEach(button => {
                 button.textContent = 'AC';
             }
             updateDisplay('0');
+            calculator.dataset.hasEntry = 'false';
             calculator.dataset.previousKeyType = 'clear';
         }
 
-        if (action !== 'clear') {
+        if (action !== 'clear' && calculator.dataset.hasEntry === 'true') {
             const clearButton = calculator.querySelector('[data-action=clear]');
             clearButton.textContent = 'CE';
         }
 
         if (action === 'negate') {
-            if (displayedNum !== '0' && !displayedNum.includes('-')) {
-                updateDisplay('-' + displayedNum);
-            } else if (displayedNum.includes('-')) {
+            if (displayedNum.includes('-')) {
                 updateDisplay(displayedNum.slice(1));
+            } else if (displayedNum !== '0') {
+                updateDisplay('-' + displayedNum);
             }
+            calculator.dataset.previousKeyType = 'negate';
         }
 
         if (action == 'calculate') {
