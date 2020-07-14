@@ -1,3 +1,4 @@
+// TODO: add backspace button, add keyboard support, visual improvements
 const calculator = document.querySelector('.calculator');
 const displayText = calculator.querySelector('.display-text');
 const calculatorButtons = calculator.querySelectorAll('button');
@@ -9,7 +10,6 @@ calculatorButtons.forEach(button => {
         const displayedNum = displayText.textContent;
         const previousKeyType = calculator.dataset.previousKeyType;
 
-        // number buttons
         if (!action) {
             if (
                 displayedNum === '0' ||
@@ -23,7 +23,6 @@ calculatorButtons.forEach(button => {
             calculator.dataset.previousKeyType = 'number';
         }
 
-        // decimal button
         if (action === 'decimal') {
             if (!displayedNum.includes('.')) {
                 updateDisplay(displayedNum + '.');
@@ -36,7 +35,6 @@ calculatorButtons.forEach(button => {
             calculator.dataset.previousKeyType = 'decimal'
         }
 
-        // operator buttons
         if (
             action === 'add' ||
             action === 'subtract' ||
@@ -46,7 +44,7 @@ calculatorButtons.forEach(button => {
             const firstNumber = calculator.dataset.firstNumber;
             const operator = calculator.dataset.operator;
             const secondNumber = displayedNum;
-            
+
             if (
                 firstNumber &&
                 operator &&
@@ -66,7 +64,6 @@ calculatorButtons.forEach(button => {
             calculator.dataset.previousKeyType = 'operator';
         }
 
-        // clear button
         if (action === 'clear') {
             if (buttonContent === 'AC') {
                 calculator.dataset.firstNumber = '';
@@ -85,7 +82,14 @@ calculatorButtons.forEach(button => {
             clearButton.textContent = 'CE';
         }
 
-        // equals button
+        if (action === 'negate') {
+            if (displayedNum !== '0' && !displayedNum.includes('-')) {
+                updateDisplay('-' + displayedNum);
+            } else if (displayedNum.includes('-')) {
+                updateDisplay(displayedNum.slice(1));
+            }
+        }
+
         if (action == 'calculate') {
             let firstNumber = calculator.dataset.firstNumber;
             const operator = calculator.dataset.operator;
