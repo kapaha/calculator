@@ -69,14 +69,14 @@ calculatorButtons.forEach(button => {
         if (action === 'clear') {
             if (buttonContent === 'AC') {
                 calculator.dataset.firstNumber = '';
-                calculator.dataset.secondNumber = '';
+                calculator.dataset.modValue = ''
                 calculator.dataset.operator = '';
-                calculator.dataset.previousOperator = '';
+                calculator.dataset.previousKeyType = '';
             } else {
                 button.textContent = 'AC';
             }
             updateDisplay('0');
-            calculator.dataset.hasEntry = 'false';
+            calculator.dataset.hasEntry = '';
             calculator.dataset.previousKeyType = 'clear';
         }
 
