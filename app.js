@@ -1,4 +1,3 @@
-// TODO: add backspace button, add keyboard support, visual improvements
 const calculator = document.querySelector('.calculator');
 const displayText = calculator.querySelector('.display-text');
 const calculatorButtons = calculator.querySelectorAll('button');
