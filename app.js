@@ -9,6 +9,8 @@ calculatorButtons.forEach(button => {
         const displayedNum = displayText.textContent;
         const previousKeyType = calculator.dataset.previousKeyType;
 
+        calculatorButtons.forEach(button => button.classList.remove('is-depressed'));
+
         if (!action) {
             if (
                 displayedNum === '0' ||
@@ -62,6 +64,7 @@ calculatorButtons.forEach(button => {
                 calculator.dataset.firstNumber = displayedNum;
             }
 
+            button.classList.add('is-depressed');
             calculator.dataset.operator = action;
             calculator.dataset.previousKeyType = 'operator';
         }
