@@ -32,8 +32,10 @@
     cursor: pointer;
 }
 
-.calculator > button:hover {
-    opacity: 0.85;
+.calculator > button:active,
+.calculator > .is-depressed {
+    opacity: 0.8;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5) inset; 
 }
 
 .display {
