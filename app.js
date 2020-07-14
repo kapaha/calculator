@@ -25,14 +25,15 @@ calculatorButtons.forEach(button => {
         }
 
         if (action === 'decimal') {
-            if (!displayedNum.includes('.')) {
-                updateDisplay(displayedNum + '.');
-            } else if (
+            if (
                 previousKeyType === 'operator' ||
                 previousKeyType === 'calculate'
             ) {
                 updateDisplay('0.');
+            } else if (!displayedNum.includes('.')) {
+                updateDisplay(displayedNum + '.');
             }
+
             calculator.dataset.previousKeyType = 'decimal'
             calculator.dataset.hasEntry = 'true';
         }
