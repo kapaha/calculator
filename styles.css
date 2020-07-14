@@ -55,8 +55,7 @@
     font-weight: 300;
 }
 
-.span-three {
-    grid-column: span 3;
+.function-btn {
     background-color: var(--clear-button-color);
 }
 
