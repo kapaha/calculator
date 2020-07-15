@@ -87,8 +87,7 @@
     }
 
     .calculator {
-        align-content: stretch;
         grid-template-columns: repeat(4, 25vw);
-        grid-template-rows: minmax(25vw, auto) repeat(5, 25vw);
+        grid-template-rows: 1fr repeat(5, 25vw);
     }
 }
