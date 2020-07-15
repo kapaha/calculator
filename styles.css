@@ -88,10 +88,10 @@
 
     .calculator {
         grid-template-columns: repeat(4, 25vw);
-        grid-template-rows: 1fr repeat(5, 25vw);
+        grid-template-rows: minmax(25vw, 1fr) repeat(5, 25vw);
     }
 
     .display-text {
-        font-size: 20vw;
+        font-size: 15vw;
     }
 }
