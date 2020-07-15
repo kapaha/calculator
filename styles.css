@@ -25,11 +25,12 @@
     grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
 
- .calculator > button {
+.calculator > button {
     font-size: 2rem;
     border: 1px solid var(--display-color);
     outline: none;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .calculator > button:active,
@@ -44,7 +45,6 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
-    word-wrap: break-word;
     word-break: break-all;
     background-color: var(--display-color);
     padding: 10px;
@@ -79,4 +79,16 @@
 
 .bor-rad-btm-r {
     border-bottom-right-radius: var(--border-radius-size);
+}
+
+@media only screen and (max-width: 800px) {
+    :root {
+        --border-radius-size: 0px;
+    }
+
+    .calculator {
+        align-content: stretch;
+        grid-template-columns: repeat(4, 25vw);
+        grid-template-rows: minmax(25vw, auto) repeat(5, 25vw);
+    }
 }
