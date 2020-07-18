@@ -17,15 +17,17 @@
 }
 
 body {
-    background-color: lightblue;
-
+    height: 100vh;
+    background-color: #f8f8ff;
+    /* background: white; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .calculator {
     display: grid;
-    justify-content: center;
-    align-content: center;
-    min-height: 100vh;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
@@ -86,17 +88,48 @@ body {
     border-bottom-right-radius: var(--border-radius-size);
 }
 
+.info-section {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-section > p {
+    margin-bottom: 20px;
+    color: black;
+    font-size: 1.3rem;
+}
+
+.github-link {
+    transition: 0.3s;
+}
+
+.github-link:hover {
+    filter: invert(30%);
+    transform: scale(1.1);
+}
+
 @media only screen and (max-width: 800px) {
     :root {
         --border-radius-size: 0px;
     }
 
+    body {
+        height: auto;
+    }
+    
     .calculator {
+        min-height: 100vh;
         grid-template-columns: repeat(4, 25vw);
         grid-template-rows: minmax(25vw, 1fr) repeat(5, 25vw);
     }
 
     .display-text {
         font-size: 20vw;
+    }
+
+    .info-section {
+        display: none;
     }
 }
