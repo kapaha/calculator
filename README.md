@@ -6,12 +6,6 @@ Calculator app created with HTML, CSS & Javascript for The Odin Project.
 ## Demo
 Here is a working live demo: https://kapaha.github.io/calculator/
 
-## Table of contents
-* [General info](#general-info)
-* [Features](#features)
-* [Built with](#built-with)
-* [Status](#status)
-
 ## General info
 This project was created as a part of the [Web Development 101](https://kapaha.github.io/calculator/) course with [The Odin Project](https://theodinproject.com). The aim of this project was to combine the knowledge of HTML, CSS & Javascript I have learnt throughout the course.
 
