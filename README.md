@@ -7,7 +7,7 @@ Calculator app created with HTML, CSS & Javascript for The Odin Project.
 Here is a working live demo: https://kapaha.github.io/calculator/
 
 ## General info
-This project was created as a part of the [Web Development 101](https://kapaha.github.io/calculator/) course with [The Odin Project](https://theodinproject.com). The aim of this project was to combine the knowledge of HTML, CSS & Javascript I have learnt throughout the course.
+This project was created as a part of the [Web Development 101](https://www.theodinproject.com/courses/web-development-101/lessons/calculator) course with [The Odin Project](https://theodinproject.com). The aim of this project was to combine the knowledge of HTML, CSS & Javascript I have learnt throughout the course.
 
 ## Features
 * Clear button - changes between all-clear and clear-entry mode based on calculator state
